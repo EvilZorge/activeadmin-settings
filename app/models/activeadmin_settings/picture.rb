@@ -39,33 +39,15 @@ module ActiveadminSettings
     end
   end
 
-  if defined?(Mongoid)
-    class Picture
-      include Mongoid::Document
-      include Mongoid::Timestamps
+  class Picture < ActiveRecord::Base
 
-      # Fields
-      field :data_file_size
-      field :data_content_type
-      field :width,   :type => Integer
-      field :height,  :type => Integer
-
-      include PictureMethods
-
-      # Scopes
-      default_scope order_by(:created_at => :desc)
+    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+      attr_accessible :data_content_type, :data_file_size, :height, :width, :data
     end
-  else
-    class Picture < ActiveRecord::Base
 
-      unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-        attr_accessible :data_content_type, :data_file_size, :height, :width, :data
-      end
+    include PictureMethods
 
-      include PictureMethods
-
-      # Scopes
-      default_scope { order('created_at desc') }
-    end
+    # Scopes
+    default_scope { order('created_at desc') }
   end
 end

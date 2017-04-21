@@ -67,37 +67,15 @@ module ActiveadminSettings
 
   end
 
-  if defined?(Mongoid)
-    class Setting
-      include Mongoid::Document
-      include Mongoid::Timestamps
-      include Mongoid::Globalize
+  class Setting < ActiveRecord::Base
+    include SettingMethods
 
-      # Fields
-      field :name
-
-      translates do
-        field :string, :default => ""
-        fallbacks_for_empty_translations!
-      end
-
-      include SettingMethods
-
-      def self.value(name, locale)
-        find_or_create_by(:name => name, :locale => (locale || I18n.locale)).value
-      end
+    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+      attr_accessible :name, :string, :file, :remove_file, :locale
     end
-  else
-    class Setting < ActiveRecord::Base
-      include SettingMethods
 
-      unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-        attr_accessible :name, :string, :file, :remove_file, :locale
-      end
-
-      def self.value(name, locale)
-        find_or_create_by(:name => name, :locale => (locale || I18n.locale)).value
-      end
+    def self.value(name, locale)
+      find_or_create_by(:name => name, :locale => (locale || I18n.locale)).value
     end
   end
 end
