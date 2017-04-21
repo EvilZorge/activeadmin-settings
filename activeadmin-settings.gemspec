@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency("fog", ">= 0.9.0")
   gem.add_dependency("mini_magick", "~> 3.4")
   gem.add_dependency("carrierwave", "~> 0.8.0")
-  gem.add_dependency("bson_ext", "~> 1.8.2")
+  gem.add_dependency("bson", ">= 4.2.1")
   gem.add_dependency("devise", "~> 4.2.0")
   gem.add_dependency("activeadmin", ">= 1.0.0.pre")
 end
