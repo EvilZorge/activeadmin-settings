@@ -16,7 +16,6 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
 
   gem.add_dependency("aws-s3", "~> 0.6.3")
-  gem.add_dependency("fog", ">= 0.9.0")
   gem.add_dependency("mini_magick", "~> 3.4")
   gem.add_dependency("devise", "~> 4.2.0")
   gem.add_dependency("activeadmin", ">= 1.0.0.pre")
