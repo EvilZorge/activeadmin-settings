@@ -17,6 +17,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency("aws-s3", "~> 0.6.3")
   gem.add_dependency("mini_magick", "~> 3.4")
-  gem.add_dependency("devise", "~> 4.2.0")
+  gem.add_dependency("devise", "~> 4.5.0")
   gem.add_dependency("activeadmin", ">= 1.0.0.pre")
 end
