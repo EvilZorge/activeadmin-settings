@@ -1,5 +1,5 @@
 class ActiveadminSettings::AdminUsersController < ApplicationController
-  before_filter :authenticate!
+  before_action :authenticate!
 
   def update
     @object = AdminUser.find(params[:id])
@@ -32,11 +32,11 @@ class ActiveadminSettings::AdminUsersController < ApplicationController
     else
       params.permit admin_user: [:email, :password, :password_confirmation]
     end
-  end 
+  end
 
   private
 
   def authenticate!
-    send ActiveAdmin.application.authentication_method 
+    send ActiveAdmin.application.authentication_method
   end
 end

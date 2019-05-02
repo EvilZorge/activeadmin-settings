@@ -1,5 +1,5 @@
 class ActiveadminSettings::SettingsController < ApplicationController
-  before_filter :authenticate!
+  before_action :authenticate!
 
   def update
     @object = ActiveadminSettings::Setting.find(params[:id])
@@ -17,11 +17,11 @@ class ActiveadminSettings::SettingsController < ApplicationController
     else
       params.permit setting: [:name, :string, :file, :remove_file, :locale]
     end
-  end 
+  end
 
   private
 
   def authenticate!
-    send ActiveAdmin.application.authentication_method 
+    send ActiveAdmin.application.authentication_method
   end
 end
